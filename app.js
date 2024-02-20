@@ -10,6 +10,8 @@ app.use(express.json());
 
 app.use(createUserRouter);
 
-app.listen(7950, () => {
+const server = app.listen(7950, () => {
     console.log("Port is listening");
 });
+
+module.exports = server;
