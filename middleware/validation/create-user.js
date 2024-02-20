@@ -23,4 +23,9 @@ const userValidation = (req, res, next) => {
     res.status(400).json({message: error});
 };
 
-module.exports = {validateCreateUser, userValidation};
+const validateUserLogin = [
+    check("email").trim().isEmail().withMessage("email / password is required"),
+    check("password").trim().not().isEmpty().withMessage("email / password is required")
+]
+
+module.exports = {validateCreateUser, userValidation, validateUserLogin};
