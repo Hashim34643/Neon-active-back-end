@@ -5,7 +5,7 @@ const createUser = async (req, res) => {
         const { firstName, lastName, email, password, confirmPassword } = req.body;
         const isNewUser = await createUserModel.isThisEmailInUse(email);
         if (!isNewUser) {
-            return res.json({message: "This email is already in use try sign-in"})
+            return res.status(400).json({message: "This email is already in use try sign-in"})
         }
         const newUser = new createUserModel({
             firstName,
@@ -15,7 +15,7 @@ const createUser = async (req, res) => {
             confirmPassword
         });
         await newUser.save();
-        res.json({ newUser });
+        res.status(200).json({ newUser });
     } catch(error) {
         res.status(500).json({message: "Internal server error"})
     }
