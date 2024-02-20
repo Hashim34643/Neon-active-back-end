@@ -20,7 +20,7 @@ const userValidation = (req, res, next) => {
     }
 
     const error = result[0].msg;
-    res.json({message: error});
+    res.status(400).json({message: error});
 };
 
 module.exports = {validateCreateUser, userValidation};
