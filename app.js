@@ -7,6 +7,7 @@ const getUserRouter = require("./routes/get-users");
 const loginRouter = require("./routes/logged-in");
 const addWorkoutRouter = require("./routes/add-workout");
 const getUserByIdRouter = require("./routes/get-user-byId");
+const getWorkoutsRouter = require("./routes/get-workouts");
 
 const app = express();
 
@@ -16,9 +17,10 @@ app.use(createUserRouter);
 app.use(getUserRouter);
 app.use(loginRouter);
 app.use(addWorkoutRouter);
-app.use(getUserByIdRouter)
+app.use(getUserByIdRouter);
+app.use(getWorkoutsRouter)
 
-const server = app.listen(7950, () => {
+const server = app.listen(7951, () => {
     console.log("Port is listening");
 });
 
