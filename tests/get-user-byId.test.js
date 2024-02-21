@@ -11,7 +11,8 @@ describe("GET /users/:id", () => {
         
     });
     test("Should respond a user object with all properties", async () => {
-        const user_id = '65d5d4b34040db4ab012b6fd'
+        let user_id = await User.findOne()
+        user_id = user_id.id.toString()
         const response = await request(app).get(`/users/${user_id}`);
         expect(response.body.users).toMatchObject({
             firstName: 'TestFirstName',
