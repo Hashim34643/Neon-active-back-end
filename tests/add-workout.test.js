@@ -30,7 +30,6 @@ const loginTestUser = async () => {
         .send(userData);
 
     jwtToken = response.body.token;
-    console.log(jwtToken)
 };
 
 beforeAll(async () => {
