@@ -7,10 +7,10 @@ describe("GET /users", () => {
         const mongoURI = process.env.TEST_MONGO_URI;
         await mongoose.connect(mongoURI);
     });
-    test("Should respond with status 200 and return all users", async () => {
-        const response = await request(app).get("/users");
+    test("Should respond with status 200 and return all workouts", async () => {
+        const response = await request(app).get("/workouts");
         expect(response.statusCode).toBe(200);
-        expect(Array.isArray(response.body.users)).toBe(true);
+        expect(Array.isArray(response.body.workouts)).toBe(true);
     });
     afterAll(async () => {
         await mongoose.connection.close();

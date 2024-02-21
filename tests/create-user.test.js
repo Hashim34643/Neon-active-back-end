@@ -19,11 +19,10 @@ describe("POST /create-user", () => {
         const response = await request(app).post("/create-user").send(newUser)
         
         expect(response.statusCode).toBe(200);
-        expect(response.body).toHaveProperty('newUser');
-        expect(response.body.newUser).toHaveProperty('_id');
-        expect(response.body.newUser.firstName).toBe(newUser.firstName);
-        expect(response.body.newUser.lastName).toBe(newUser.lastName);
-        expect(response.body.newUser.email).toBe(newUser.email);
+        console.log(response.body)
+        expect(response.body).toHaveProperty('message');
+        expect(response.body).toHaveProperty('userId');
+        expect(response.body.message).toBe('User created successfully');
     });
     test("Should respond with status 400 if email already exists", async () => {
         const user = {
