@@ -1,10 +1,10 @@
 const app = require("../app");
 const request = require("supertest");
 const mongoose = require("mongoose");
+const mongoURI = require("../models/db");
 
 describe("POST /login", () => {
     beforeAll(async () => {
-        const mongoURI = process.env.TEST_MONGO_URI;
         await mongoose.connect(mongoURI);
         await mongoose.connection.dropDatabase();
     });
@@ -24,7 +24,6 @@ describe("POST /login", () => {
             password: "William123"
         };
         const response = await request(app).post("/login").send(userInfo);
-        console.log(response.body.user)
 
         expect(response.statusCode).toBe(200);
         expect(response.body.success).toBe(true);

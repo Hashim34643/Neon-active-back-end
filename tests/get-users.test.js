@@ -1,10 +1,10 @@
 const app = require("../app");
 const request = require("supertest");
 const mongoose = require("mongoose");
+const mongoURI = require("../models/db");
 
 describe("GET /users", () => {
     beforeAll(async () => {
-        const mongoURI = process.env.TEST_MONGO_URI;
         await mongoose.connect(mongoURI);
     });
     test("Should respond with status 200 and return all users", async () => {
