@@ -1,16 +1,17 @@
 const User = require('../models/create-user')
 const app = require("../app");
 const request = require("supertest");
-const mongoose = require("mongoose")
+const mongoose = require("mongoose");
+const mongoURI = require("../models/db");
 
 describe("GET /users/:id", () => {
     beforeAll(async () => {
-        const mongoURI = process.env.TEST_MONGO_URI;
         await mongoose.connect(mongoURI);
         await mongoose.connection.dropDatabase();
     });
     test("Should respond a user object with all properties", async () => {
         const newUser = {
+            username: "TestUser",
             firstName: "TestFirstName",
             lastName: "TestLastName",
             email: "TestEmail@gmail.com".toLowerCase(),

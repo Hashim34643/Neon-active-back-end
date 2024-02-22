@@ -1,15 +1,16 @@
 const app = require("../app");
 const request = require("supertest");
 const mongoose = require("mongoose");
+const mongoURI = require("../models/db");
 
 describe("POST /create-user", () => {
     beforeAll(async () => {
-        const mongoURI = process.env.TEST_MONGO_URI;
         await mongoose.connect(mongoURI);
         await mongoose.connection.dropDatabase();
     });
     test("Should respond with status 200 and create a new user", async () => {
         const newUser = {
+            username: "TestUser",
             firstName: "TestFirstName",
             lastName: "TestLastName",
             email: "TestEmail@gmail.com".toLowerCase(),
@@ -26,6 +27,7 @@ describe("POST /create-user", () => {
     });
     test("Should respond with status 400 if email already exists", async () => {
         const user = {
+            username: "TestUser",
             firstName: "Existing",
             lastName: "User",
             email: "existing@example.com",
@@ -35,6 +37,7 @@ describe("POST /create-user", () => {
         await request(app).post("/create-user").send(user);
 
         const newUser = {
+            username: "TestUser",
             firstName: "New",
             lastName: "User",
             email: "existing@example.com".toLowerCase(),
@@ -48,6 +51,7 @@ describe("POST /create-user", () => {
     });
     test("Should respond with status 400 and error message if first name is missing", async () => {
         const newUser = {
+            username: "TestUser",
             lastName: "TestLastName",
             email: "TestEmail@gmail.com",
             password: "TestPassword",
@@ -60,6 +64,7 @@ describe("POST /create-user", () => {
     });
     test("Should respond with status 400 and error message if last name is missing", async () => {
         const newUser = {
+            username: "TestUser",
             firstName: "TestLastName",
             email: "TestEmail@gmail.com",
             password: "TestPassword",
@@ -75,6 +80,7 @@ describe("POST /create-user", () => {
     });
     test("Should respond with status 400 and error message if email is missing or invalid", async () => {
         const newUser = {
+            username: "TestUser",
             firstName: "TestFirstName",
             lastName: "TestLastName",
             password: "TestPassword",
@@ -86,6 +92,7 @@ describe("POST /create-user", () => {
         expect(response.body.message).toBe("Invalid email");
 
         const newUser2 = {
+            username: "TestUser",
             firstName: "TestFirstName",
             lastName: "TestLastName",
             email: "InvalidEmail",
@@ -99,6 +106,7 @@ describe("POST /create-user", () => {
     });
     test("Should respond with status 400 and error message if password is invalid", async () => {
         const newUser = {
+            username: "TestUser",
             firstName: "TestFirstName",
             lastName: "TestFirstName",
             email: "TestEmail@gmail.com",
@@ -112,6 +120,7 @@ describe("POST /create-user", () => {
     });
     test("Should respond with status 400 and error message if confirm password is invalid", async () => {
         const newUser = {
+            username: "TestUser",
             firstName: "TestFirstName",
             lastName: "TestFirstName",
             email: "TestEmail@gmail.com",

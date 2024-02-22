@@ -2,6 +2,7 @@ const request = require("supertest");
 const app = require("../app");
 const mongoose = require('mongoose');
 const Workout = require('../models/add-workout');
+const mongoURI = require("../models/db");
 
 const User = require("../models/create-user");
 
@@ -9,6 +10,7 @@ let jwtToken = "";
 
 const createTestUser = async () => {
     const userData = {
+        username: "TestUser",
         firstName: "Test",
         lastName: "User",
         email: "test@example.com",
@@ -33,6 +35,7 @@ const loginTestUser = async () => {
 };
 
 beforeAll(async () => {
+    await mongoose.connect(mongoURI);
     await mongoose.connection.dropDatabase();
     await createTestUser();
     await loginTestUser();

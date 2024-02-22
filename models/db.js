@@ -10,3 +10,5 @@ mongoose.connect(mongoURI)
     .catch((error) => {
         console.error(error.message);
     });
+
+module.exports = mongoURI;
