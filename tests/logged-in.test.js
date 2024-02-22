@@ -10,6 +10,7 @@ describe("POST /login", () => {
     });
     test("Should respond with status 200 and user details if successfull login", async () => {
         const newUser = {
+            username: "Test123",
             firstName: "TestFirstName",
             lastName: "TestLastName",
             email: "William123@gmail.com".toLowerCase(),
@@ -23,11 +24,13 @@ describe("POST /login", () => {
             password: "William123"
         };
         const response = await request(app).post("/login").send(userInfo);
+        console.log(response.body.user)
 
         expect(response.statusCode).toBe(200);
         expect(response.body.success).toBe(true);
         expect(response.body.user).toEqual({
             _id: expect.any(String),
+            username: "Test123",
             firstName: 'TestFirstName',
             lastName: 'TestLastName',
             email: 'william123@gmail.com',
@@ -39,7 +42,6 @@ describe("POST /login", () => {
             password: "notindb"
         };
         const response = await request(app).post("/login").send(invalidLoginInfo);
-        console.log(response.body)
         expect(response.statusCode).toBe(401)
         expect(response.body.success).toBe(false);
         expect(response.body.message).toBe("User not found with given email")
