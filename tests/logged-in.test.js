@@ -29,7 +29,7 @@ describe("POST /login", () => {
         expect(response.body.success).toBe(true);
         expect(response.body.user).toEqual({
             _id: expect.any(String),
-            username: "Test123",
+            username: "test123",
             firstName: 'TestFirstName',
             lastName: 'TestLastName',
             email: 'william123@gmail.com',
