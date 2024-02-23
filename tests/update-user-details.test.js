@@ -33,7 +33,13 @@ describe('PATCH /users/:username/update', () => {
         };
 
         const response = await request(app)
+workout-by-id
+        .patch('/user/testusername/update')
+        .send(updatedData);
+        
+
         .patch('/user/testusername/update').set("Authorization", `Bearer ${jwtToken}`).send(updatedData);
+main
         expect(response.status).toBe(200);
         expect(response.body).toHaveProperty('message', 'User details updated successfully.');
         expect(response.body).toHaveProperty('user');
