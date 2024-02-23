@@ -5,26 +5,66 @@ const mongoose = require("mongoose");
 const mongoURI = require("../models/db");
 
 
+let jwtToken = ""
+
+const addNewUser = async () => {
+    const newUser = {
+        username: "sardaramiri",
+        firstName: "sardar",
+        lastName: "amiri",
+        email: "sardaramiri@gmail.com".toLowerCase(),
+        password: "12345",
+        confirmPassword: "12345"
+    };
+    await request(app).post("/create-user").send(newUser)
+}
+
+const loginUser = async () => {
+    const loginUser = await request(app).post("/login").send({
+        email: "sardaramiri@gmail.com".toLowerCase(),
+        password: "12345",
+    })
+    jwtToken = loginUser.body.token;
+}
+ 
+const addNewWorkout = async () => {
+    const workoutData = {
+        type: "weights",
+        duration: 100
+    };
+
+     await request(app)
+    .post("/workouts/add")
+    .set("Authorization", `jwt ${jwtToken}`)
+    .send(workoutData);
+}
+
+
+
 describe('Get Workout by ID', () => {
    beforeAll(async () => {
        await mongoose.connect(mongoURI);
+       await mongoose.connection.dropDatabase();
+       await addNewUser()
+       await loginUser()
+       await addNewWorkout()
    });
 
-   test.only('should return the correct workout when a valid ID is provided', async () => {
+   test('should return the correct workout when a valid ID is provided', async () => {
 
        let workout_id = await Workout.findOne()
        workout_id = workout_id.id.toString()
 
        const res = await request(app)
-           .get(`/workouts/${workout_id}`);
-        console.log(workout_id.length)
+        .get(`/workouts/${workout_id}`);
+    
        expect(res.status).toBe(200);
        expect(typeof res.body).toBe('object');
        expect(res.body.workout._id).toBe(workout_id);
       
    });
 
-   it.only('should return a 404 error when an invalid ID is provided', async () => {
+   test('should return a 404 error when an invalid ID is provided', async () => {
         let workout_id = await Workout.findOne()
         workout_id = workout_id.id.toString()
         const workoutId = '111111111111111111111111';
@@ -36,7 +76,7 @@ describe('Get Workout by ID', () => {
         expect(res.body.message).toBe('Invalid Id')
 });
 
-   it.only('should return a 400 error when workout ID is not found', async () => {
+   test('should return a 400 error when workout ID is not found', async () => {
        
        const workoutId = 'abc';
 

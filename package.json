@@ -26,6 +26,6 @@
     "supertest": "^6.3.4"
   },
   "devDependencies": {
-    "jest-mongoose-mock": "^1.2.0"
+    "jest-mongoose-mock": "^1.1.3"
   }
 }
