@@ -3,14 +3,11 @@ const app = require('../app');
 const mongoose = require('mongoose');
 const User = require('../models/create-user');
 const mongoURI = require("../models/db");
-
 describe('PATCH /users/:username/update', () => {
     beforeAll(async () => {
         await mongoose.connect(mongoURI);
         await mongoose.connection.dropDatabase();
     });
-
-    
     test('Should update user details', async () => {
         const newUser = {
             username: "TestUsername",
@@ -31,20 +28,13 @@ describe('PATCH /users/:username/update', () => {
             lastName: 'User',
             email: 'updated@example.com'
         };
-
         const response = await request(app)
-workout-by-id
-        .patch('/user/testusername/update')
-        .send(updatedData);
-        
-
         .patch('/user/testusername/update').set("Authorization", `Bearer ${jwtToken}`).send(updatedData);
-main
         expect(response.status).toBe(200);
         expect(response.body).toHaveProperty('message', 'User details updated successfully.');
         expect(response.body).toHaveProperty('user');
         expect(response.body.user).toMatchObject(updatedData);
-    });  
+    });
     test("Should respond with 401 if no JWT token is provided", async () => {
         const newUser = {
             username: "TestUseername",
@@ -58,7 +48,6 @@ main
         const updatedData = {
             firstName: 'Updated',
         };
-
         const response = await request(app)
             .patch("/user/testuseername/update")
             .send(updatedData);
@@ -78,14 +67,11 @@ main
         const updatedData = {
             firstName: "dsgsg"
         };
-
         const invalidToken = "INVALID_TOKEN";
-
         const response = await request(app)
             .patch("/user/testuseeername/update")
             .set("Authorization", `Bearer ${invalidToken}`)
             .send(updatedData);
-
         expect(response.statusCode).toBe(401);
         expect(response.body).toHaveProperty("message", "Unauthorized access!");
     });
@@ -109,14 +95,11 @@ main
             lastName: 'User',
             email: 'updated@example.com'
         };
-
         const response = await request(app)
             .patch('/user/nonexistentuser/update').set("Authorization", `Bearer ${jwtToken}`).send(updatedData);
-            
             expect(response.status).toBe(404);
             expect(response.body).toHaveProperty('message', 'User not found');
         });
-
         afterAll(async () => {
             await mongoose.connection.close();
         });
