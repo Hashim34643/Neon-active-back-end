@@ -3,9 +3,6 @@ require("dotenv").config();
 
 const ENV = process.env.NODE_ENV || 'test';
 const mongoURI = process.env.NODE_ENV === "test" ? process.env.TEST_MONGO_URI : process.env.MONGO_URI;
-if (!process.env.MONGO_URI || !process.env.TEST_MONGO_URI || !process.env.DATABASE_URL) {
-    throw new Error('Database or Test Database URL not set');
-  }
 
 const config = {};
 if (ENV === 'production') {
