@@ -2,13 +2,11 @@
   "name": "neon-active-backend",
   "version": "1.0.0",
   "description": "",
-  "main": "listen.js",
+  "main": "app.js",
   "scripts": {
     "test": "NODE_ENV=test jest",
     "test:file": "jest",
-    "start": "node listen.js",
-    "seed": "node ./models/db.js",
-    "seed-prod": "NODE_ENV=production npm run seed"
+    "start": "nodemon app.js"
   },
   "author": "",
   "license": "ISC",

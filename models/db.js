@@ -9,16 +9,12 @@ if (ENV === 'production') {
     config.connectionString = process.env.DATABASE_URL;
     config.max = 2;
   }
-const connectDb = async () => {
-    if (typeof mongoURI !== 'string') {
-        throw new Error('Invalid MongoDB URI: must be a string');
-      }
-    try {
-        await mongoose.connect(mongoURI);
-        console.log("db connected");
-    } catch(error) {
-        console.error("Error connecting to MongoDB:", error.message);
-    }
-}
+  mongoose.connect(mongoURI)
+  .then(() => {
+      console.log("db connected");
+  })
+  .catch((error) => {
+      console.error(error.message);
+  });
 
-module.exports = connectDb;
+module.exports = mongoURI;
