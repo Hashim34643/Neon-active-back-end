@@ -7,6 +7,10 @@ const addWorkoutSchema = new mongoose.Schema({
         ref: 'User',
         required: true
     },
+    username: {
+        type: String,
+        required: true
+    },
     type: {
         type: String,
         enum: ['cardio', 'weights', 'stretching'],
@@ -15,6 +19,10 @@ const addWorkoutSchema = new mongoose.Schema({
     duration: {
         type: Number,
         required: true
+    },
+    addedAt: {
+        type: Date,
+        default: Date.now
     }
 })
 

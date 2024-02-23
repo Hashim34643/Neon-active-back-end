@@ -1,4 +1,5 @@
 const express = require("express");
+const cors = require("cors");
 require("dotenv").config();
 const mongoose = require("mongoose");
 require("./models/db");
@@ -14,6 +15,7 @@ const updateWorkoutRouter = require("./routes/update-workout-details");
 
 const app = express();
 
+app.use(cors());
 app.use(express.json());
 
 app.use(createUserRouter);
@@ -26,9 +28,8 @@ app.use(workoutByIdRouter)
 app.use(updateUserRouter);
 app.use(updateWorkoutRouter);
 
-
-const server = app.listen(7951, () => {
-    console.log("Port is listening");
+const server = app.listen(7952, () => {
+  console.log("Port is listening");
 });
 
 module.exports = server;
