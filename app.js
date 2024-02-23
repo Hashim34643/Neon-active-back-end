@@ -26,7 +26,7 @@ app.use(getWorkoutsRouter);
 app.use(updateUserRouter);
 app.use(updateWorkoutRouter);
 
-const server = app.listen(7951, () => {
+const server = app.listen(7952, () => {
   console.log("Port is listening");
 });
 
