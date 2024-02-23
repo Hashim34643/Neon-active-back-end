@@ -28,7 +28,7 @@ describe('PATCH /users/:username/update', () => {
         };
 
         const response = await request(app)
-        .patch('/user/TestUsername/update')
+        .patch('/user/testusername/update')
         .send(updatedData);
         
         expect(response.status).toBe(200);
