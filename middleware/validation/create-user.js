@@ -1,6 +1,7 @@
 const {check, validationResult} = require("express-validator");
 
 const validateCreateUser = [
+    check("username").trim().not().isEmpty().withMessage("username cannot be empty"),
     check("firstName").trim().not().isEmpty().withMessage("First name cannot be empty"),
     check("lastName").trim().not().isEmpty().withMessage("Last name cannot be empty"),
     check("email").normalizeEmail().isEmail().withMessage("Invalid email"),
