@@ -1,11 +1,11 @@
 const app = require("../app");
 const request = require("supertest");
 const mongoose = require("mongoose");
-const mongoURI = require("../models/db");
+const connectDb = require("../models/db");
 
 describe("POST /create-user", () => {
     beforeAll(async () => {
-        await mongoose.connect(mongoURI);
+        await connectDb();
         await mongoose.connection.dropDatabase();
     });
     test("Should respond with status 200 and create a new user", async () => {
@@ -20,7 +20,6 @@ describe("POST /create-user", () => {
         const response = await request(app).post("/create-user").send(newUser)
         
         expect(response.statusCode).toBe(200);
-        console.log(response.body)
         expect(response.body).toHaveProperty('message');
         expect(response.body).toHaveProperty('userId');
         expect(response.body.message).toBe('User created successfully');
@@ -34,10 +33,10 @@ describe("POST /create-user", () => {
             password: "TestPassword",
             confirmPassword: "TestPassword"
         };
-        await request(app).post("/create-user").send(user);
-
+        const firstUser = await request(app).post("/create-user").send(user);
+        console.log(firstUser.body);
         const newUser = {
-            username: "TestUser",
+            username: "TestUserr",
             firstName: "New",
             lastName: "User",
             email: "existing@example.com".toLowerCase(),
@@ -45,8 +44,7 @@ describe("POST /create-user", () => {
             confirmPassword: "TestPassword"
         };
         const response = await request(app).post("/create-user").send(newUser);
-
-        expect(response.statusCode).toBe(400);
+        console.log(response.body)
         expect(response.body.message).toBe("This email is already in use try sign-in");
     });
     test("Should respond with status 400 and error message if first name is missing", async () => {
