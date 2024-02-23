@@ -25,7 +25,6 @@ const updateUser = async (req, res) => {
 
         res.status(200).json({ success: true, message: 'User details updated successfully.', user: updatedUser });
     } catch (error) {
-        console.error('Error updating user details:', error);
         res.status(500).json({ success: false, message: 'Internal server error.' });
     }
 }
