@@ -25,4 +25,4 @@ app.use(getWorkoutsRouter);
 app.use(updateUserRouter);
 app.use(updateWorkoutRouter);
 
-module.exports = server;
+module.exports = app;
