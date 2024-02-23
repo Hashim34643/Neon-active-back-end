@@ -10,6 +10,7 @@ const addWorkoutRouter = require("./routes/add-workout");
 const getUserByIdRouter = require("./routes/get-user-byId");
 const getWorkoutsRouter = require("./routes/get-workouts");
 const workoutByIdRouter = require('./routes/get-workout-by-id')
+const deleteWorkoutsRouter = require('./routes/delete-workout')
 const updateUserRouter = require("./routes/update-user-details");
 const updateWorkoutRouter = require("./routes/update-workout-details");
 
@@ -25,6 +26,7 @@ app.use(addWorkoutRouter);
 app.use(getUserByIdRouter);
 app.use(getWorkoutsRouter);
 app.use(workoutByIdRouter)
+app.use(deleteWorkoutsRouter)
 app.use(updateUserRouter);
 app.use(updateWorkoutRouter);
 
