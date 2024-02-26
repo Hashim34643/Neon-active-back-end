@@ -7,8 +7,14 @@ const teamSchema = new mongoose.Schema({
         unique: true
     },
     leader: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'User',
+        type: {
+            _id: mongoose.Schema.Types.ObjectId,
+            username: String,
+            firstName: String,
+            lastName: String,
+            email: String
+        },
+        ref: "User",
         required: true
     },
     dateFounded: {
@@ -20,9 +26,15 @@ const teamSchema = new mongoose.Schema({
         default: 0
     },
     members: [{
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'User'
-    }]
+        type: {
+            _id: mongoose.Schema.Types.ObjectId,
+            username: String,
+            firstName: String,
+            lastName: String,
+            email: String
+        },
+        ref: "User"
+    }],
 });
 
-module.exports = mongoose.model('Team', teamSchema);
+module.exports = mongoose.model("Team", teamSchema);
