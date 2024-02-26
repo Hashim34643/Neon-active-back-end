@@ -9,7 +9,7 @@ const workoutSchema = new mongoose.Schema({
     },
     type: {
         type: String,
-        enum: ['cardio', 'weights', 'stretching'],
+        enum: ['cardio', 'weights', 'stretching', "run", "walk", "gym", "jog"],
         required: true
     },
     duration: {

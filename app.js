@@ -16,6 +16,7 @@ const updateWorkoutRouter = require("./routes/update-workout-details");
 const getWorkoutsByUsernameRouter = require("./routes/get-workouts-by-username");
 const updateUserPointsRouter = require("./routes/update-user-points");
 const createTeamRouter = require("./routes/create-team");
+const getAllTeamsRouter = require("./routes/get-teams");
 
 const app = express();
 
@@ -35,6 +36,7 @@ app.use(updateWorkoutRouter);
 app.use(getWorkoutsByUsernameRouter);
 app.use(updateUserPointsRouter);
 app.use(createTeamRouter)
+app.use(getAllTeamsRouter);
 
 const server = app.listen(7952, () => {
   console.log("Port is listening");
