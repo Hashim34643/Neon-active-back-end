@@ -18,6 +18,7 @@ const updateUserPointsRouter = require("./routes/update-user-points");
 const createTeamRouter = require("./routes/create-team");
 const getAllTeamsRouter = require("./routes/get-teams");
 const getTeamByTeamnameRouter = require("./routes/get-team-by-teamname");
+const addUserToTeamRouter = require("./routes/add-user-to-team");
 
 const app = express();
 
@@ -39,6 +40,7 @@ app.use(updateUserPointsRouter);
 app.use(createTeamRouter)
 app.use(getAllTeamsRouter);
 app.use(getTeamByTeamnameRouter);
+app.use(addUserToTeamRouter);
 
 const server = app.listen(7952, () => {
   console.log("Port is listening");
