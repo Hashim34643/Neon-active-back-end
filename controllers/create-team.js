@@ -20,9 +20,21 @@ const createTeam = async (req, res) => {
         }
 
         const newTeam = new Team({
-            name: teamName.toLowerCase(),
-            leader: user._id,
-            members: [user._id]
+            name: teamName,      
+            leader: {
+                _id: user._id,
+                username: user.username,
+                firstName: user.firstName,
+                lastName: user.lastName,
+                email: user.email
+            },
+            members: [{
+                _id: user._id,
+                username: user.username,
+                firstName: user.firstName,
+                lastName: user.lastName,
+                email: user.email
+            }]
         });
 
         await newTeam.save();
@@ -32,7 +44,7 @@ const createTeam = async (req, res) => {
         if (error.name === 'JsonWebTokenError') {
             return res.status(401).json({ success: false, message: 'Invalid token' });
         };
-        if (error.code === 11000 && error.keyPattern && error.keyPattern.name === 1) {
+        if (error.name === 'MongoError' && error.code === 11000) {
             return res.status(400).json({ success: false, message: 'Team name already exists' });
         };
         res.status(500).json({ success: false, message: 'Internal server error' });
