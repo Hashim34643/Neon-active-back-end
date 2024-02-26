@@ -20,7 +20,7 @@ const createTeam = async (req, res) => {
         }
 
         const newTeam = new Team({
-            name: teamName,      
+            name: teamName.toLowerCase(),      
             leader: {
                 _id: user._id,
                 username: user.username,
