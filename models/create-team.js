@@ -2,39 +2,27 @@ const mongoose = require('mongoose');
 
 const teamSchema = new mongoose.Schema({
     name: {
-        type: String,
-        required: true,
-        unique: true
+      type: String,
+      required: true,
+      unique: true
     },
     leader: {
-        type: {
-            _id: mongoose.Schema.Types.ObjectId,
-            username: String,
-            firstName: String,
-            lastName: String,
-            email: String
-        },
-        ref: "User",
-        required: true
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User",
+      required: true
     },
     dateFounded: {
-        type: Date,
-        default: Date.now
+      type: Date,
+      default: Date.now
     },
     points: {
-        type: Number,
-        default: 0
+      type: Number,
+      default: 0
     },
-    members: [{
-        type: {
-            _id: mongoose.Schema.Types.ObjectId,
-            username: String,
-            firstName: String,
-            lastName: String,
-            email: String
-        },
-        ref: "User"
-    }],
-});
+    members: {
+      type: [mongoose.Schema.Types.ObjectId],
+      ref: "User"
+    }
+  });
 
 module.exports = mongoose.model("team", teamSchema);
