@@ -14,6 +14,7 @@ const deleteWorkoutsRouter = require('./routes/delete-workout')
 const updateUserRouter = require("./routes/update-user-details");
 const updateWorkoutRouter = require("./routes/update-workout-details");
 const getWorkoutsByUsernameRouter = require("./routes/get-workouts-by-username");
+const updateUserPointsRouter = require("./routes/update-user-points");
 
 const app = express();
 
@@ -31,6 +32,7 @@ app.use(deleteWorkoutsRouter)
 app.use(updateUserRouter);
 app.use(updateWorkoutRouter);
 app.use(getWorkoutsByUsernameRouter);
+app.use(updateUserPointsRouter);
 
 const server = app.listen(7952, () => {
   console.log("Port is listening");
