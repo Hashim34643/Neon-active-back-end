@@ -5,6 +5,9 @@ const updateUserPoints = async (req, res) => {
     const {pointsToAdd} = req.body;
 
     try {
+        if (isNaN(pointsToAdd)) { 
+            return res.status(400).json({ success: false, message: 'pointsToAdd must be a number' });
+        }
         const updatedUser = await User.findOneAndUpdate(
             { username },
             { $inc: { points: pointsToAdd } },
