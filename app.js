@@ -22,11 +22,7 @@ const addUserToTeamRouter = require("./routes/add-user-to-team");
 const generateWorkoutPlanRouter = require("./routes/generate-workout-plan");
 const addGoalRouter = require('./routes/add-goals')
 const getAllGoalsRouter = require('./routes/get-all-goals-for-a-user')
-
-const updateGoalRouter = require('./routes/update-goal')
-const getGoalByIdRouter = require('./routes/get-goal-by-id')
 const deleteGoalRouter = require('./routes/delete-goal')
-
 const updateGoalRouter = require('./routes/update-goal');
 const saveWorkoutPlanRouter = require("./routes/save-workout-plan");
 const getGoalByIdRouter = require('./routes/get-goal-by-id');
