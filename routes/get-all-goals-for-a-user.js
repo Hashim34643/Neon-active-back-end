@@ -4,6 +4,6 @@ const getAllGoalsController = require("../controllers/get-all-goals-for-a-user")
 
 const isAuth = require("../middleware/auth");
 const getAllGoalsRouter = express.Router();
-getAllGoalsRouter.get("/goals/:userId", isAuth, getAllGoalsController);
+getAllGoalsRouter.get("/user/:userId/goals", isAuth, getAllGoalsController);
 
 module.exports = getAllGoalsRouter;

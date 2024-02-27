@@ -23,7 +23,7 @@ const generateWorkoutPlanRouter = require("./routes/generate-workout-plan");
 const addGoalRouter = require('./routes/add-goals')
 const getAllGoalsRouter = require('./routes/get-all-goals-for-a-user')
 const updateGoalRouter = require('./routes/update-goal')
-
+const getGoalByIdRouter = require('./routes/get-goal-by-id')
 
 const app = express();
 
@@ -50,6 +50,7 @@ app.use(generateWorkoutPlanRouter)
 app.use(addGoalRouter)
 app.use(getAllGoalsRouter)
 app.use(updateGoalRouter)
+app.use(getGoalByIdRouter)
 
 const server = app.listen(7952, () => {
   console.log("Port is listening");
