@@ -25,7 +25,7 @@ const addGoal = async (req, res) => {
            startDate: startDate || new Date(),
            endDate: endDate || new Date()
        });
-       console.log(newGoal)
+
        await newGoal.save();
        res.status(200).json({newGoal});
    } catch (error) {
