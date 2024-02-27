@@ -34,7 +34,6 @@ const createTeam = async (req, res) => {
 
     res.status(201).json({ success: true, message: 'Team created successfully', team: newTeam });
   } catch (error) {
-    console.error(error);
     if (error.name === 'JsonWebTokenError') {
       return res.status(401).json({ success: false, message: 'Invalid token' });
     };
