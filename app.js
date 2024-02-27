@@ -21,6 +21,9 @@ const getTeamByTeamnameRouter = require("./routes/get-team-by-teamname");
 const addUserToTeamRouter = require("./routes/add-user-to-team");
 const generateWorkoutPlanRouter = require("./routes/generate-workout-plan");
 const addGoalRouter = require('./routes/add-goals')
+const getAllGoalsRouter = require('./routes/get-all-goals-for-a-user')
+const updateGoalRouter = require('./routes/update-goal')
+
 
 const app = express();
 
@@ -45,6 +48,8 @@ app.use(getTeamByTeamnameRouter);
 app.use(addUserToTeamRouter);
 app.use(generateWorkoutPlanRouter)
 app.use(addGoalRouter)
+app.use(getAllGoalsRouter)
+app.use(updateGoalRouter)
 
 const server = app.listen(7952, () => {
   console.log("Port is listening");
