@@ -61,9 +61,9 @@ app.use(deleteGoalRouter)
 
 app.use(deleteWorkoutPlanRouter);
 
-
 const server = app.listen(7952, () => {
   console.log("Port is listening");
 });
+server.timeout = 60000;
 
 module.exports = server;
