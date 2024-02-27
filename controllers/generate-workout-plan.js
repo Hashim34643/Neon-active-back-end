@@ -15,7 +15,6 @@ const generateWorkoutPlanController = async (req, res) => {
     const workoutPlan = await generateWorkoutPlan(prompt);
     res.json({ success: true, workoutPlan });
   } catch (error) {
-    console.log(error);
     res.status(500).json({ error: "Error generating workout plan" });
   }
 }

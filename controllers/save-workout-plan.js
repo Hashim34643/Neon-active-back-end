@@ -23,7 +23,6 @@ const saveWorkoutPlan = async (req, res) => {
 
         res.status(201).json({ success: true, message: "Workout Plan Saved", newWorkoutPlan });
     } catch (error) {
-        console.log(error)
         res.status(500).json({ success: false, error: "Error saving workout plan" });
     }
 }
