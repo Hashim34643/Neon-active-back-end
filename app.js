@@ -24,6 +24,7 @@ const addGoalRouter = require('./routes/add-goals')
 const getAllGoalsRouter = require('./routes/get-all-goals-for-a-user')
 const updateGoalRouter = require('./routes/update-goal')
 const getGoalByIdRouter = require('./routes/get-goal-by-id')
+const deleteGoalRouter = require('./routes/delete-goal')
 
 const app = express();
 
@@ -51,6 +52,7 @@ app.use(addGoalRouter)
 app.use(getAllGoalsRouter)
 app.use(updateGoalRouter)
 app.use(getGoalByIdRouter)
+app.use(deleteGoalRouter)
 
 const server = app.listen(7952, () => {
   console.log("Port is listening");
