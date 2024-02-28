@@ -5,7 +5,7 @@ const generateWorkoutPlan = async (prompt) => {
         JSON.stringify({  
             model: "gpt-3.5-turbo-instruct",
             prompt: prompt, 
-            max_tokens: 3500,
+            max_tokens: 2000,
         }), {
             headers: {
                 'Content-Type': 'application/json',

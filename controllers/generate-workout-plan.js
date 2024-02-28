@@ -2,12 +2,9 @@ const generateWorkoutPlan = require('../models/generate-workout-plan');
 
 const generateWorkoutPlanController = async (req, res) => {
   try {
-    const { input1, input2, input3, input4 } = req.body;
+    const { input1, input2, input3} = req.body;
     const weeks = parseInt(input2, 10)
-    if (isNaN(weeks) || weeks < 1 || weeks > 6) {
-        return res.status(400).json({ error: "Number of weeks must be between 1 and 6" });
-    }
-    if (!input1 || !input2 || !input3 || !input4) {
+    if (!input1 || !input2 || !input3) {
       return res.status(400).json({ success: false, message: "Please provide all inputs" });
     }
 
