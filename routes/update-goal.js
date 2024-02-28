@@ -4,6 +4,6 @@ const updateGoal = require('../controllers/update-goal');
 const isAuth = require("../middleware/auth");
 
 
-updateGoalRouter.patch('/goals/:goalId', isAuth, updateGoal);
+updateGoalRouter.patch('/user/:userId/goals/:goalId', updateGoal);
 
 module.exports = updateGoalRouter;

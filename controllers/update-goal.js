@@ -1,8 +1,10 @@
 const Goals = require("../models/add-goals");
+const User = require('../models/create-user')
 
 const updateGoal = async (req, res) => {
     
-    const id = req.params.goalId;
+    const userId = req.params.userId
+    const goalId = req.params.goalId
     const {goalType, target_points, description} = req.body;
     const updateFields = {};
     if (goalType) {
@@ -15,17 +17,21 @@ const updateGoal = async (req, res) => {
         updateFields.description = description;
     }
     try {
-    
-        const updateGoal = await Goals.findByIdAndUpdate({_id: id} , updateFields, { new: true });
-        
-        if (!updateGoal) {
-            return res.status(404).json({ success: false, message: 'Gaol not found.' });
+        const user = await User.findById(userId);
+        if (!user) {
+        return res.status(404).json({ message: 'User not found' });
         }
-        res.status(200).json({ success: true, message: 'Goal details updated successfully', goal: updateGoal });
+        const goal = await Goals.findOne({ _id: goalId, user: userId });
+        if (!goal) {
+        return res.status(404).json({ message: 'Goal not found' });
+        }
+    
+        const updateGoal = await Goals.findByIdAndUpdate(goalId , updateFields, { new: true });
+        res.status(200).json({ success: true, message: 'Goal details updated successfully', goals: updateGoal });
+
     } catch (error) {
-        res.status(500).json({ success: false, message: 'Internal server error.' });
+        res.status(404).json({ success: false, message: 'Invalid ID' });
     }
 }
 
 module.exports = updateGoal;
-// 65dc6e3f690423bd3316c85f
