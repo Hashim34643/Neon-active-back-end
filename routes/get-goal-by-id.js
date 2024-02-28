@@ -6,7 +6,7 @@ const isAuth = require("../middleware/auth");
 
 
 
-getGoalByIdRouter.get('/goals/:goalId', isAuth, getGoalById);
+getGoalByIdRouter.get('/user/:userId/goals/:goalId', getGoalById);
 
 
 module.exports = getGoalByIdRouter;
