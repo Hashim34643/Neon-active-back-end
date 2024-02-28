@@ -33,6 +33,7 @@ describe("POST /login", () => {
             firstName: 'TestFirstName',
             lastName: 'TestLastName',
             email: 'william123@gmail.com',
+            points: 0,
         });
     });
     test("Should respond with 401 if user details do not match details in database", async () => {
