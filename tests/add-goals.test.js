@@ -1,4 +1,4 @@
-const Goal = require('../models/add-goal');
+const Goal = require('../models/add-goals');
 const app = require("../app");
 const request = require("supertest");
 const mongoose = require("mongoose");
