@@ -8,7 +8,7 @@ const generateWorkoutPlanController = async (req, res) => {
       return res.status(400).json({ success: false, message: "Please provide all inputs" });
     }
 
-    const prompt = `generate a workout plan to ${input1}, i can exercise for ${input2} mins per day ${input3} times a week. give me the workout plan in bulletpoint format`;
+    const prompt = `generate a 1 week workout plan to ${input1}, i can exercise for ${input2} mins per day ${input3} times a week. give me the workout plan in bulletpoint format`;
     const workoutPlan = await generateWorkoutPlan(prompt);
     res.json({ success: true, workoutPlan });
   } catch (error) {
