@@ -14,7 +14,8 @@ const generateWorkoutPlanController = async (req, res) => {
     Day 4:
     Day 5:
     Day 6:
-    Day 7:`;
+    Day 7:
+    on the days that have a workout specify the warm-up, main workout and cooldown`;
     const workoutPlan = await generateWorkoutPlan(prompt);
     res.json({ success: true, workoutPlan });
   } catch (error) {
