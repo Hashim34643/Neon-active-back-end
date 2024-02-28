@@ -5,12 +5,17 @@ const getAllGoals = async (req, res) => {
    try {
        const userId = req.params.userId
        const goals = await Goals.find({user: userId});
-       if(!goals){
-           return res.status(404).json({message: 'Goals not found'})
+       if(goals.length === 0){
+        return res.status(404).json({message: `No Goal Found for this userId ${userId}`})
+    }
+
+    else if(!goals){
+        return res.status(404).json({message: 'Invalid User ID'})
        }
+ 
        res.status(200).json({goals});
    } catch (error) {
-       res.status(500).json({ message: `Goals not found for UserId: ${req.params.userId}`});
+    res.status(404).json({ message: `Invalid User ID`});
      
    }
 };
