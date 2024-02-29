@@ -63,7 +63,7 @@ describe('Get Goal by ID', () => {
 
        let goal = await Goal.findOne()
        let goal_id = goal.id.toString()
-       console.log(goal_id)
+       
 
         const res = await request(app)
         .get(`/user/${userId}/goals/${goal_id}`)

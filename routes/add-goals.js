@@ -6,7 +6,7 @@ const isAuth = require("../middleware/auth");
 const addGoalRouter = express.Router();
 
 
-addGoalRouter.post("/create-goals", isAuth, addGoalController);
+addGoalRouter.post("/create-goals", addGoalController);
 
 
 module.exports = addGoalRouter;
