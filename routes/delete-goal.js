@@ -6,7 +6,7 @@ const isAuth = require("../middleware/auth");
 
 
 
-deleteGoalRouter.delete('/goals/:goalId', isAuth, deleteGoalController);
+deleteGoalRouter.delete('/user/:userId/delete-goals/:goalId', isAuth, deleteGoalController);
 
 
 module.exports = deleteGoalRouter;

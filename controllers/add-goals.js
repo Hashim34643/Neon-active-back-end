@@ -32,7 +32,7 @@ const addGoal = async (req, res) => {
        if (error.errors && error.errors.type && error.errors.type.kind === 'enum') {
            return res.status(400).json({ message: "Invalid Goal type" });
        }
-       console.log(error.name)
+       
        res.status(404).json({message: "User not found"})
    }
 };
